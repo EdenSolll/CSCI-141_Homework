@@ -51,8 +51,8 @@ def draw_snake_rec(segments):
         t.pencolor(random.randint(0, COLOR_MAX), random.randint(0, COLOR_MAX), random.randint(0, COLOR_MAX)) 
         t.width(random.randint(1, MAX_THICKNESS))
         t.lt(random.randint(-MAX_ANGLES, MAX_ANGLES))
-        if t.xcor() >= BOUNDING_BOX - 25 or t.xcor() <= -(BOUNDING_BOX - 25) \
-                or t.ycor() >= BOUNDING_BOX - 25 or t.ycor() <= -(BOUNDING_BOX - 25): 
+        if t.xcor() >= BOUNDING_BOX - (MAX_LENGTH + MAX_THICKNESS / 2) or t.xcor() <= -(BOUNDING_BOX - 25) \
+                or t.ycor() >= BOUNDING_BOX - (MAX_LENGTH + MAX_THICKNESS / 2) or t.ycor() <= -(BOUNDING_BOX - 25): 
             t.setheading(t.towards(0,0))
         t.fd(length)
         return draw_snake_rec(segments - 1) + length
@@ -70,8 +70,8 @@ def draw_snake_tail(segments, total):
         t.pencolor(random.randint(0, COLOR_MAX), random.randint(0, COLOR_MAX), random.randint(0, COLOR_MAX)) 
         t.width(random.randint(1, MAX_THICKNESS))
         t.lt(random.randint(-MAX_ANGLES, MAX_ANGLES))
-        if t.xcor() >= BOUNDING_BOX - 25 or t.xcor() <= -(BOUNDING_BOX - 25) \
-                or t.ycor() >= BOUNDING_BOX - 25 or t.ycor() <= -(BOUNDING_BOX - 25): 
+        if t.xcor() >= BOUNDING_BOX - (MAX_LENGTH + MAX_THICKNESS / 2) or t.xcor() <= -(BOUNDING_BOX - 25) \
+                or t.ycor() >= BOUNDING_BOX - (MAX_LENGTH + MAX_THICKNESS / 2) or t.ycor() <= -(BOUNDING_BOX - 25): 
             t.setheading(t.towards(0,0))
         t.fd(length)
         total += length
@@ -89,8 +89,8 @@ def draw_snake_iter(segments):
         t.pencolor(random.randint(0, COLOR_MAX), random.randint(0, COLOR_MAX), random.randint(0, COLOR_MAX)) 
         t.width(random.randint(1, MAX_THICKNESS))
         t.lt(random.randint(-MAX_ANGLES, MAX_ANGLES))
-        if t.xcor() >= BOUNDING_BOX - 25 or t.xcor() <= -(BOUNDING_BOX - 25) \
-                or t.ycor() >= BOUNDING_BOX - 25 or t.ycor() <= -(BOUNDING_BOX - 25): 
+        if t.xcor() >= BOUNDING_BOX - (MAX_LENGTH + MAX_THICKNESS / 2) or t.xcor() <= -(BOUNDING_BOX - 25) \
+                or t.ycor() >= BOUNDING_BOX - (MAX_LENGTH + MAX_THICKNESS / 2) or t.ycor() <= -(BOUNDING_BOX - 25): 
             t.setheading(t.towards(0,0))
         t.fd(length)
         total += length
