@@ -2,8 +2,7 @@
     meteo.py
     assignment: lab 4
     language: python3
-    author: YOUR NAME GOES HERE
-
+    author: Eden Grace
 """
 
 import turtle as t
@@ -23,29 +22,46 @@ def draw_rectangle(length, width):
     draws a rectangle with the given length and width
     :param length:
     :param width:
-    :pre-conditions: turtle faces east, pen up
+    :pre-conditions: turtle faces east2, pen up
     :post-conditions: turtle faces east, pen up
     """
     t.fd(length/2)
     t.lt(90)
+    t.down()
     t.fd(width/2)
     t.lt(90)
     t.fd(length)
     t.lt(90)
     t.fd(width)
     t.lt(90)
+    t.lt(length)
+    t.lt(90)
+    t.fd(width/2)
+    t.up()
+    t.rt(90)
+    t.bk(length/2)
+
+
+
 def snowflake(length=8):
     """
     draws a 6-arms snowflake
     :pre-conditions: turtle faces east, pen up
     :post-conditions: turtle faces east, pen up
     """
-    pass # YOUR CODE GOES HERE
+    t.down()
+    for _ in range(5):
+        t.fd(length)
+        t.bk(length)
+        t.lt(60)
+    t.up()
 
 
 def draw_sun(r=16):
-
-    pass # YOUR CODE AND DOCSTRING  GOES HERE
+    t.fillcolor('yellow')
+    t.begin_fill() 
+    t.circle(r)
+    t.end_fill()
 
 def draw_rain(size=16):
 
