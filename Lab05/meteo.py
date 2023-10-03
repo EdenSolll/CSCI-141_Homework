@@ -42,7 +42,6 @@ def draw_rectangle(length, width):
     t.bk(length/2)
 
 
-
 def snowflake(length=8):
     """
     draws a 6-arms snowflake
@@ -64,9 +63,18 @@ def draw_sun(r=16):
     t.end_fill()
 
 def draw_rain(size=16):
-
-    pass # YOUR CODE AND DOCSTRING  GOES HERE
-    
+    draw_cloud()
+    t.rt(90)
+    t.fd(size)
+    t.down()
+    for _ in range(3):
+        t.rt(30)
+        t.fd(size*2)
+        t.bk(size*2)
+        t.lt(120)
+        t.fd(size/2)
+        t.rt(90)
+ 
 def draw_cloud(r=16):
     """
     draws a pretty cloud as a combination of: 1 circle of radius r,
