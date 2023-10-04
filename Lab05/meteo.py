@@ -1,10 +1,8 @@
-
 """
     meteo.py
     assignment: lab 4
     language: python3
-    author: YOUR NAME GOES HERE
-
+    author: Eden Grace
 """
 
 import turtle as t
@@ -41,7 +39,7 @@ def snowflake(length=8):
     """
     t.pencolor('blue')
     t.down()
-    for _ in range(5):
+    for _ in range(6):
         t.lt(60)
         t.fd(length)
         t.bk(length)
@@ -113,7 +111,6 @@ def draw_snow(size=8):
     t.right(90)
     t.forward(size)
     t.left(90)
-    t.lt(90)
     snowflake(size)
     t.right(45)
     t.forward(2*size)
@@ -123,7 +120,6 @@ def draw_snow(size=8):
     t.forward(2*size)
     t.right(45)
     snowflake(size)
-    t.rt(90)
     
 
 if __name__ == "__main__":
