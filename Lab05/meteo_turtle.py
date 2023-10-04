@@ -4,11 +4,20 @@ import turtle as t
 def fun(string):
     i = 1
     r = 0
-    for _ in string:
-        if ord(string[i]) >= 65 and ord(string[i]) <= 90 and ord(string[i]) != 71:
-             commands(string[r:i])
-             break
-        i = i + 1
+    for _ in range(len(string)):
+        if len(string) > i+1:
+            if ord(string[i]) >= 65 and ord(string[i]) <= 90 and ord(string[i]) != 71:
+                commands(string[r:i])
+                fun(string[i:])
+            if ord(string[i]) == 71 and ord(string[i-1]) <= 57:
+                commands(string[r:i])
+                fun(string[i:])
+            else:
+                i = i + 1
+        else:
+            print(string)
+            commands(string)
+            break
 
 def get_number(string):
     i = 0 #lastchar index 
@@ -21,10 +30,14 @@ def get_number(string):
     if string[0] == 'G' or string[1] == 'G':
         return string[i+1:r], string[r+1:]
     else:
-        return string[i+1:]
+        return string[i:]
 
 def commands(cmd):
-    if cmd[0] == 'S':
+    if cmd[0] == 'G':
+        x,y = get_number(cmd)
+        t.up()
+        t.goto(int(x),int(y))
+    elif cmd[0] == 'S':
         m.draw_sun()
     elif cmd[0] == 'P': 
        m.draw_sun() 
@@ -42,20 +55,17 @@ def commands(cmd):
         t.begin_fill()
         m.draw_rectangle(36, 16)
         t.end_fill()
-        t.write(str(x) + 'F', font=('Arial', 9, 'bold'))
+        t.pencolor('black')
+        t.write(str(x)[1:] + 'F', font=('Arial', 9, 'bold'))
     elif cmd[0] == 'A':
         x = get_number(cmd)
         t.pencolor('red')
-        t.circle(x[0])
-    if cmd[0] == 'G':
-        x,y = get_number(cmd)
-        t.up()
-        t.goto(int(x),int(y))
-        t.down()
+        y = x[1:]
+        t.circle(int(y))
     if cmd[1] == 'G':
         x,y = get_number(cmd)
-        t.goto(int(x),int(y))
         t.up()
+        t.goto(int(x),int(y))
 
 
 def main():

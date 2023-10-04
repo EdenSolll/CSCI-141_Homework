@@ -39,9 +39,13 @@ def snowflake(length=8):
     :pre-conditions: turtle faces east, pen up
     :post-conditions: turtle faces east, pen up:
     """
+    t.pencolor('blue')
+    t.down()
     for _ in range(5):
         t.lt(60)
         t.fd(length)
+        t.bk(length)
+    t.up()
     
 
 def draw_sun(r=16):
@@ -109,6 +113,7 @@ def draw_snow(size=8):
     t.right(90)
     t.forward(size)
     t.left(90)
+    t.lt(90)
     snowflake(size)
     t.right(45)
     t.forward(2*size)
@@ -118,6 +123,7 @@ def draw_snow(size=8):
     t.forward(2*size)
     t.right(45)
     snowflake(size)
+    t.rt(90)
     
 
 if __name__ == "__main__":
