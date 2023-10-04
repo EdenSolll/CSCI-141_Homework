@@ -1,8 +1,10 @@
+
 """
     meteo.py
     assignment: lab 4
     language: python3
-    author: Eden Grace
+    author: YOUR NAME GOES HERE
+
 """
 
 import turtle as t
@@ -22,59 +24,59 @@ def draw_rectangle(length, width):
     draws a rectangle with the given length and width
     :param length:
     :param width:
-    :pre-conditions: turtle faces east2, pen up
+    :pre-conditions: turtle faces east, pen up
     :post-conditions: turtle faces east, pen up
     """
-    t.fd(length/2)
-    t.lt(90)
-    t.down()
-    t.fd(width/2)
-    t.lt(90)
-    t.fd(length)
-    t.lt(90)
-    t.fd(width)
-    t.lt(90)
-    t.lt(length)
-    t.lt(90)
-    t.fd(width/2)
-    t.up()
-    t.rt(90)
-    t.bk(length/2)
-
+    for _ in range(2):
+        t.fd(length)
+        t.lt(90)
+        t.fd(width)
+        t.lt(90)
 
 def snowflake(length=8):
     """
     draws a 6-arms snowflake
     :pre-conditions: turtle faces east, pen up
-    :post-conditions: turtle faces east, pen up
+    :post-conditions: turtle faces east, pen up:
     """
-    t.down()
     for _ in range(5):
-        t.fd(length)
-        t.bk(length)
         t.lt(60)
-    t.up()
-
+        t.fd(length)
+    
 
 def draw_sun(r=16):
+    t.pencolor('yellow')
     t.fillcolor('yellow')
-    t.begin_fill() 
+    t.begin_fill()
     t.circle(r)
     t.end_fill()
+    t.setheading(0)
+    t.penup()
 
 def draw_rain(size=16):
-    draw_cloud()
-    t.rt(90)
-    t.fd(size)
+    """
+
+    """
     t.down()
-    for _ in range(3):
+    x = t.xcor()
+    y = t.ycor()
+    draw_cloud()
+    t.up()
+    t.rt(90)
+    t.fd(size/2)
+    for _ in range(4):
+        t.down()
         t.rt(30)
-        t.fd(size*2)
-        t.bk(size*2)
-        t.lt(120)
+        t.fd(size)
+        t.bk(size)
+        t.rt(60)
+        t.up()
         t.fd(size/2)
-        t.rt(90)
- 
+        t.lt(90)
+    t.goto(x,y)
+    t.setheading(0)
+    t.penup()
+
 def draw_cloud(r=16):
     """
     draws a pretty cloud as a combination of: 1 circle of radius r,
@@ -90,11 +92,11 @@ def draw_cloud(r=16):
     t.forward(1.2*r)
     t.circle(r)
     t.forward(1.2*r)
-    t.circle(r/2)
+    t.circle(r/3)
     t.end_fill()
     t.pencolor("black")
     
-
+    
 def draw_snow(size=8):
     """
     draws 3 snowflakes and a cloud
@@ -120,3 +122,4 @@ def draw_snow(size=8):
 
 if __name__ == "__main__":
     background()
+
