@@ -58,11 +58,10 @@ def commands(cmd):
         t.pencolor('black')
         t.write(str(x)[1:] + 'F', font=('Arial', 9, 'bold'))
     elif cmd[0] == 'A':
-        x = get_number(cmd)
         t.pencolor('red')
-        y = x[1:]
-        t.circle(int(y))
-    if cmd[1] == 'G':
+        x,y = get_number(cmd)
+        t.circle(int(x))
+    elif cmd[1] == 'G':
         x,y = get_number(cmd)
         t.up()
         t.goto(int(x),int(y))
