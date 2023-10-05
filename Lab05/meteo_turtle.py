@@ -6,17 +6,17 @@ def fun(string):
     i = 1
     r = 0
     for _ in range(len(string)):
-        if len(string) >= i + 1:
-            if 65 <= ord(string[i]) <= 90 and ord(string[i]) != 71:
-                commands(string[r:i])
-                fun(string[i:])
-            if ord(string[i]) == 71 and ord(string[i - 1]) <= 57:
-                commands(string[r:i])
-                fun(string[i:])
-            i = i + 1
-        else:
+        if len(string) == i:
             commands(string)
-            break
+            t.done()
+            quit()
+        elif 65 <= ord(string[i]) <= 90 and ord(string[i]) != 71:
+            commands(string[r:i])
+            fun(string[i:])
+        elif ord(string[i]) == 71 and ord(string[i - 1]) <= 57:
+            commands(string[r:i])
+            fun(string[i:])
+        i = i + 1
 
 
 def get_number(string):
@@ -72,9 +72,9 @@ def commands(cmd):
 
 def main():
     m.background()
+    t.speed(0)
     s = "RG100,100SG20,200PG10,190T50G-200,-40WG-210,-50T70G20,-200A40"
     fun(s)
-    t.done()
 
 
 if __name__ == '__main__':
