@@ -1,6 +1,6 @@
 """
     meteo.py
-    assignment: lab 4
+    assignment: lab 5 
     language: python3
     author: Eden Grace
 """
@@ -47,6 +47,11 @@ def snowflake(length=8):
     
 
 def draw_sun(r=16):
+    """
+    draws a yellow circle to represent the sun
+    :pre-conditions: turtle faces east, pen up
+    :post-conditions: turtle faces east, pen up:
+    """
     t.pencolor('yellow')
     t.fillcolor('yellow')
     t.begin_fill()
@@ -57,7 +62,9 @@ def draw_sun(r=16):
 
 def draw_rain(size=16):
     """
-
+    adds rain to the cloud function
+    :pre-conditions: turtle faces east, pen up
+    :post-conditions: turtle faces east, pen up:
     """
     t.down()
     x = t.xcor()
@@ -77,7 +84,7 @@ def draw_rain(size=16):
         t.lt(90)
     t.goto(x,y)
     t.setheading(0)
-    t.penup()
+    t.up()
 
 def draw_cloud(r=16):
     """

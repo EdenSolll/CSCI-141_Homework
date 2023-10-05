@@ -1,27 +1,45 @@
+"""
+    meteo_turtle.py
+    assignment: lab 5
+    language: python3
+    author: Eden Grace
+"""
+
 import meteo as m
 import turtle as t
 
 
-def fun(string):
+def process_string(string):
+    """
+    Takes a string iterates through it searching for the end of each command.
+    Errors out if an index error occours
+    """
     i = 1
     while True:
-        if len(string) == i + 1:
-            commands(string)
-            t.done()
-            break
-        if 65 <= ord(string[i]) <= 90 and ord(string[i]) != 71:
-            commands(string[:i])
-            string = string[i:]
-            i = 1
-        elif i >= 1:
-            if ord(string[i]) == 71 and ord(string[i - 1]) <= 57:
+        try:
+            if len(string) == i + 1:
+                commands(string)
+                t.done()
+                break
+            if 65 <= ord(string[i]) <= 90 and ord(string[i]) != 71:
                 commands(string[:i])
                 string = string[i:]
                 i = 1
-        i = i + 1
-
+            elif i >= 1:
+                if ord(string[i]) == 71 and ord(string[i - 1]) <= 57:
+                    commands(string[:i])
+                    string = string[i:]
+                    i = 1
+            i = i + 1
+        except IndexError:
+            return None
+            
 
 def get_number(string):
+    """
+    Takes a command section and strips the numbers for it and returns 
+    two numbers if the command is goto, otherwise returning just a single number
+    """
     i = 0  # lastchar index
     r = 0  # comma location
     for ind in range(len(string)):
@@ -37,6 +55,11 @@ def get_number(string):
 
 
 def commands(cmd):
+    """
+    Takes the command from the string slicer and checks which commands need to be called
+    then each command calls to either the meteo.py file where the command is stored or calls to the 
+    get number function to get the required numbers for the command
+    """
     if cmd[0] == 'G':
         x, y = get_number(cmd)
         t.up()
@@ -70,13 +93,18 @@ def commands(cmd):
         x, y = get_number(cmd)
         t.up()
         t.goto(int(x), int(y))
-
+    else:
+        return None
 
 def main():
+    """
+    Draws the background from meteo.py then asks user for the command string
+    then sending it to the string processor function
+    """
     m.background()
     t.speed(0)
-    s = "RG100,100SG20,200PG10,190T50G-200,-40WG-210,-50T70G20,-200A40"
-    fun(s)
+    input_string = input('Enter your command strings')
+    process_string(input_string)
 
 
 if __name__ == '__main__':
