@@ -4,18 +4,20 @@ import turtle as t
 
 def fun(string):
     i = 1
-    r = 0
-    for _ in range(len(string)):
-        if len(string) == i:
+    while True:
+        if len(string) == i + 1:
             commands(string)
             t.done()
-            quit()
-        elif 65 <= ord(string[i]) <= 90 and ord(string[i]) != 71:
-            commands(string[r:i])
-            fun(string[i:])
-        elif ord(string[i]) == 71 and ord(string[i - 1]) <= 57:
-            commands(string[r:i])
-            fun(string[i:])
+            break
+        if 65 <= ord(string[i]) <= 90 and ord(string[i]) != 71:
+            commands(string[:i])
+            string = string[i:]
+            i = 1
+        elif i >= 1:
+            if ord(string[i]) == 71 and ord(string[i - 1]) <= 57:
+                commands(string[:i])
+                string = string[i:]
+                i = 1
         i = i + 1
 
 
