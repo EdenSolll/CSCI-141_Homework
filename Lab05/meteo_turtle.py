@@ -6,18 +6,16 @@ def fun(string):
     i = 1
     r = 0
     for _ in range(len(string)):
-        try:
-            if len(string) > i + 1:
-                if 65 <= ord(string[i]) <= 90 and ord(string[i]) != 71:
-                    commands(string[r:i])
-                    fun(string[i:])
-                if ord(string[i]) == 71 and ord(string[i - 1]) <= 57:
-                    commands(string[r:i])
-                    fun(string[i:])
-                i = i + 1
-            else:
-                commands(string)
-        except IndexError:
+        if len(string) >= i + 1:
+            if 65 <= ord(string[i]) <= 90 and ord(string[i]) != 71:
+                commands(string[r:i])
+                fun(string[i:])
+            if ord(string[i]) == 71 and ord(string[i - 1]) <= 57:
+                commands(string[r:i])
+                fun(string[i:])
+            i = i + 1
+        else:
+            commands(string)
             break
 
 
