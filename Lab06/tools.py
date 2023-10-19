@@ -23,11 +23,3 @@ def med(sortedlist):
             sortedlist[(len(sortedlist) - 1) // 2]
             + sortedlist[((len(sortedlist) - 1) // 2) + 1]
         ) / 2
-
-
-def main():
-    filereader("test-data.txt")
-
-
-if __name__ == "__main__":
-    main()

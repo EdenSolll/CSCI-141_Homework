@@ -37,9 +37,3 @@ def swap(lst, i, j):
        effect: swaps the values in lst at positions i and j
     """
     (lst[i], lst[j]) = (lst[j], lst[i])
-
-
-if __name__ == "__main__":
-    L = [1, 5, 3, 4, 2, 2, 7, 5, 3, 4, 9, 0, 1, 2, 5, 4, 76, 6]
-    insertion_sort(L)
-    print(L)
