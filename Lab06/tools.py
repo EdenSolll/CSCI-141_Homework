@@ -1,19 +1,11 @@
-import insertionsort from insertion_sort as sortfun
+import re
 
 
-def filereader(file):
-    lst = []
-    for x in file:
-        if ord(x) == 32:
-            lst.append(x)
-
-
-def median(lst):
-    sortedlist = sortfun(lst)
-    if len(lst) % 2 == 0:
-        return sortedlist[len(lst) // 2] + sortedlist[len(lst) // 2 - 1] / 2
-    else:
-        return sortedlist[len(lst) // 2]
+def filereader(input_file):
+    with open(input_file, "r") as file:
+        text = file.read()
+        numbers = re.findall("\d+", text)
+        return numbers
 
 
 def distances(lst, location):
@@ -23,9 +15,18 @@ def distances(lst, location):
     return x
 
 
+def med(sortedlist):
+    if len(sortedlist) % 2:
+        return sortedlist[(len(sortedlist) - 1) // 2]
+    else:
+        return (
+            sortedlist[(len(sortedlist) - 1) // 2]
+            + sortedlist[((len(sortedlist) - 1) // 2) + 1]
+        ) / 2
+
+
 def main():
-    location = open("test-data.txt", "f")
-    filereader(location)
+    filereader("test-data.txt")
 
 
 if __name__ == "__main__":
