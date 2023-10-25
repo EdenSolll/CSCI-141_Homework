@@ -4,7 +4,6 @@ def filereader(input_file):
     content_list = file_contents.split("\n")
     for i in content_list:
         numbers.append(int(i.split(" ")[1]))
-        print(numbers)
     return numbers
 
 

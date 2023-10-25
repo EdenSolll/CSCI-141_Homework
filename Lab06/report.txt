@@ -1,0 +1,32 @@
+What is the purpose of the pivot? Do you really need to choose the middle item as the pivot? Would
+the algorithm have behaved differently if you had selected the first item as the pivot each time?
+
+The pivot is used to partition the list into smaller lists which are smaller than or larger than the pivot. The purpose of the pivot is to make the search sizes smaller making the algorithm much faster than other ones that do not such as insertion sort.
+
+You do not necessarily need to use the middle index, though the pivot choice can effect the efficiency a lot. The first item as the pivot would work but could be far worse such as if the array is already sorted.
+
+2. Specify at least 4 test cases varying the size of the list of distances and considering an empty list.
+Does providing a sorted list impacts the efficiency of quickselect? Remember: a test case identifies
+specific input values and expected outputs.
+
+Yes a sorted list is the worst possible case for the quickselect algorithm
+
+Input: List of Distances = [5, 12, 9, 7, 2, 11, 8, 4, 6, 10], k = 7
+Output: 9
+
+Input: List of Distances = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10], k = 10
+Output: 10
+
+Input: List of Distances = [10, 20, 30, 40, 50, 60], k = 3
+Output: 30
+
+Input: List of Distances = [] k = Value Error? or 0
+Output: Index Error
+
+3. What is the elapsed time performance of your median program using insertion sort when it processes
+a large data set? What is the elapsed time performance of your median program using quickselect
+when it processes the same large data set? Enter the elapsed times of several runs of each program
+in your report.
+
+storelocation.py elapsed time for test_dataset50K.txt = 49.32... seconds
+storelocation.py elapsed time for test_dataset50K.txt = 0.014... seconds
