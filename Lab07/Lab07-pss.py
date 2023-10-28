@@ -29,7 +29,6 @@ for index, value in enumerate(sorted_weights.values()):
             box.weight -= value
             break
 
-print([box.__dict__ for box in list_of_boxes])
 
 """
 PSS question 2
@@ -42,33 +41,12 @@ the method would fail. 9 is cloest to 10, of the remaining boxes 6 is cloest to 
 """
 PSS question 3
 
-Box can either be a class or a dictionary. If it is a class, it will have attributes for the box name, weight, and contents.
-If its a dictonary, it will have keys for the box name, weight, and contents. The contents will be a list of strings.
-
-ex:
-class
-class Box:
-    def init(self, box_number, weight, contents):
-        self.box_number = box_number
-        self.weight = weight
-        self.contents = contents
-
-box1 = Box("box1", 5, [])
-box2 = Box("box2", 10, [])
-box3 = Box("box3", 15, [])
-
-dictionary
-box1 = {"box_number": "box1", "weight": 5, "contents": []}
-box2 = {"box_number": "box2", "weight": 10, "contents": []}
-box3 = {"box_number": "box3", "weight": 15, "contents": []}
-
-list_of_boxes = [box1, box2, box3]
+A class with the attributes for the box_name, weight, and contents.
+the user defined attributes will have the types string for box_name, int for weight, and an empty list for contents
 """
 
 """
 PSS question 4
-
-
 """
 
 input_file = input("Enter text file:")
@@ -78,4 +56,3 @@ with open(input_file, "r") as f:
     for line in f:
         item, weight_str = line.split()
         items[item] = int(weight_str)
-    print(items)<D-`>
