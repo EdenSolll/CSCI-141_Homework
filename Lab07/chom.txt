@@ -1,5 +1,5 @@
-1 2 3
-a 2
-b 20
-c 22
-8 22
+15 10 25 12
+tree 2
+car 20
+house 22
+computer 40
