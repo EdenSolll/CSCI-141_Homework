@@ -1,5 +1,6 @@
-15 10 25 12
-tree 2
-car 20
-house 22
-computer 40
+15 10 5
+Cheese 9
+Barley 6
+Anise 2
+Doughnuts 5
+Eggplant 8
