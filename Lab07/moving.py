@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import ClassVar, List
 
 
 @dataclass
@@ -95,7 +94,7 @@ def obaat(list_of_boxes, sorted_dict):
     packed_items = {}
     for box in list_of_boxes:
         for item, weight in sorted_dict.items():
-            if box.space_remaining >= weight:
+            if box.space_remaining >= weight and item not in packed_items:
                 box.contents.append((item, weight))
                 box.space_remaining -= weight
                 packed_items[item] = weight
