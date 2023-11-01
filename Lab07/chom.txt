@@ -1,6 +1,9 @@
-15 10 5
-Cheese 9
-Barley 6
-Anise 2
-Doughnuts 5
-Eggplant 8
+12 12 12
+Abacus 3
+Blender 5
+Chessboard 3
+Dishes 6
+Engraving 9
+Flowerpot 3
+Guitar 3
+Helmet 4
