@@ -1,0 +1,40 @@
+question 1
+
+
+def draw_square_rec(sides):
+    while sides > 0:
+        turtle.forward(100)
+        turtle.left(90)
+        sides -= 1
+
+
+question 2
+The sum function is general recursion because to return it must call the result of
+num plus a recursive call to itself minus 1.
+
+
+question 3
+The reason this method of recursion is bad for a problem like this is because as n gets bigger the stack gets more and more function calls added to it making the program very slow.
+
+question 4
+
+time  0 1 2 3
+a     0 1 1 2
+b     1 1 2 3
+n     4 3 2 1
+old_b 1 1 2 3
+
+question 5
+a: the while loop will loop forever until it reaches a break statement
+
+b: once the break statement has been executed the loop will break and the
+code will continue at line 9 outside of the loop, printing 'done!'.
+
+c: the next line to execute after continue would be skipping the rest of the lines in the loop,
+and going back up to line 2 to check if True is still True:
+
+d:
+2
+4
+6
+done!

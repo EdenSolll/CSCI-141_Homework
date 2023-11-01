@@ -1,0 +1,32 @@
+question 1
+
+{'brick', 'fedora', 'tiger'}
+
+question 2
+
+False
+2017
+['munson', 'destler', 'simone', 'rose']
+munson : 2017
+destler : 2007
+
+question 3
+
+a O(1)
+b O(1)
+c O(1)
+
+question 4
+
+Isn't the only issue with this code that tammy.gpaa in line 10 miss spelled and supposed to be tammy.gpa?
+
+question 5
+
+total               0                  3.2                6.6
+student             ('Joe', 18, 3.2)   ('Sue', 21, 3.4)   ('Bob', 19, 3.5)
+student.name ='Bob' False              False              True
+student.gpa         3.2                3.4                3.6
+total               3.2                6.6                10.2
+
+#output:
+Average: 3.4

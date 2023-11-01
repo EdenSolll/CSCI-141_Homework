@@ -1,5 +1,15 @@
 from dataclasses import dataclass
 
+"""
+CSCI 141 Labo7
+Professor: Lima
+Name: Eden Grace
+
+This program takes an input file containing box capacities and items and their corrisponding
+weight which need to packed into boxes. The program will try three different methods of packing
+the boxes and then output the sucess of each method.
+"""
+
 
 @dataclass
 class Box:
@@ -11,6 +21,14 @@ class Box:
 
 
 def output(dataclass_lst, original_capacities, remaining_items):
+    """
+    Prints the results from the packing strategy
+
+    Arguments:
+        dataclass_lst (list): List of Box objects.
+        original_capacities (list): List of original capacities of boxes.
+        remaining_items (dict): Dictionary of items that could not be packed.
+    """
     if len(remaining_items) > 0:
         print("Unable to pack all items!")
         for i, data in enumerate(dataclass_lst):
@@ -32,6 +50,15 @@ def output(dataclass_lst, original_capacities, remaining_items):
 
 
 def filereader(input_file):
+    """
+    Reads input from a file and initializes boxes and items.
+
+    Arguments:
+        input_file (str): Name of the input file.
+
+    Returns:
+        list: A list containing initialized boxes list_of_boxes (list) and items (dict).
+    """
     with open(input_file, "r") as f:
         capacities = list(map(int, f.readline().split()))
         items = {}
@@ -45,6 +72,13 @@ def filereader(input_file):
 
 
 def roomiest(list_of_boxes, sorted_dict):
+    """
+    Packs items using the roomiest fit strategy
+    Take a List of Box objects (list_of_boxes) and a dictionary of items sorted by weight (sorted_dict)
+    as arguments.
+    Returns a list containing the updated boxes which have had the boxes property udated with items from the sorted dictionary
+    using the packing method and a dictionary of remaining items which were not able to fit into the boxes property.
+    """
     packed_items = {}
     for item, weight in sorted_dict.items():
         current_roomiest_box = None
@@ -66,6 +100,13 @@ def roomiest(list_of_boxes, sorted_dict):
 
 
 def tightest_fit(list_of_boxes, sorted_dict):
+    """
+    Packs items using the tighest fit strategy
+    Take a List of Box objects (list_of_boxes) and a dictionary of items sorted by weight (sorted_dict)
+    as arguments.
+    Returns a list containing the updated boxes which have had the boxes property udated with items from the sorted dictionary
+    using the packing method and a dictionary of remaining items which were not able to fit into the boxes property.
+    """
     packed_items = {}
     for item, weight in sorted_dict.items():
         current_tightest_box = None
@@ -91,6 +132,13 @@ def tightest_fit(list_of_boxes, sorted_dict):
 
 
 def obaat(list_of_boxes, sorted_dict):
+    """
+    Packs items using the one box at a time strategy.
+    Take a List of Box objects (list_of_boxes) and a dictionary of items sorted by weight (sorted_dict)
+    as arguments.
+    Returns a list containing the updated boxes which have had the boxes property udated with items from the sorted dictionary
+    using the packing method and a dictionary of remaining items which were not able to fit into the boxes property.
+    """
     packed_items = {}
     for box in list_of_boxes:
         for item, weight in sorted_dict.items():
@@ -105,8 +153,15 @@ def obaat(list_of_boxes, sorted_dict):
 
 
 def main():
-    filename = input("Enter your input file: ")
+    """
+    Main function for running the packing strategies.
 
+    Calls for user input then passes it to the file reader, then for each packing method,
+    the main function sorts the contents, saves the original capacities then sends the contents
+    to the packing algorithms then passes the information to the text output function
+    """
+    filename = input("Enter your input file: ")
+    # packing method 1
     boxes, stuff = filereader(filename)
     sorted_boxes = sorted(boxes, key=lambda boxes: boxes.space_remaining, reverse=True)
     sorted_dict = dict(sorted(stuff.items(), key=lambda item: item[1], reverse=True))
@@ -114,6 +169,7 @@ def main():
     filled_boxes_1, remaining_items_1 = roomiest(sorted_boxes, sorted_dict)
     print("Result from Greedy Strategy 1")
     output(filled_boxes_1, original_capacities, remaining_items_1)
+    # packing method 2
     boxes, stuff = filereader(filename)
     sorted_boxes = sorted(boxes, key=lambda boxes: boxes.space_remaining, reverse=True)
     sorted_dict = dict(sorted(stuff.items(), key=lambda item: item[1], reverse=True))
@@ -121,6 +177,7 @@ def main():
     filled_boxes_2, remaining_items_2 = tightest_fit(sorted_boxes, sorted_dict)
     print("Result from Greedy Strategy 2")
     output(filled_boxes_2, original_capacities, remaining_items_2)
+    # packing method 3
     boxes, stuff = filereader(filename)
     sorted_boxes = sorted(boxes, key=lambda boxes: boxes.space_remaining, reverse=True)
     sorted_dict = dict(sorted(stuff.items(), key=lambda item: item[1], reverse=True))
