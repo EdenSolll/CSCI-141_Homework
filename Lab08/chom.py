@@ -5,9 +5,7 @@ from typing import NewType
 stack = NewType("stack", list)
 
 
-def get_stack_from_type(
-    ball_type: str, stack_1: stack, stack_2: stack, stack_3: stack, stack_list: list
-) -> None:
+def get_stack_from_type( ball_type: str, stack_1: stack, stack_2: stack, stack_3: stack, stack_list: list[stack]) -> None:
     match ball_type:
         case "B":
             move(stack_1, stack_3, stack_list)
@@ -27,21 +25,12 @@ def get_stack_from_type(
             raise IndexError
 
 
-def move(starting_stack, ending_stack, stack_list) -> None:
-    """
-    This function will move the ball from the starting stk to the ending stk.
-    """
-    stk.push(ending_stack, stk.pop(starting_stack))
-    animate.animate_move(
-        stack_list, stack_list.index(starting_stack), stack_list.index(ending_stack)
-    )
+def move(starting_stack: stack, ending_stack: stack, stack_list: list[stack]) -> None:
+    stk.push(ending_stack, stk.pop(starting_stack)) 
+    animate.animate_move( stack_list, stack_list.index(starting_stack), stack_list.index(ending_stack))
 
 
-def algorithm(stack_1, stack_2, stack_3, i) -> None:
-    """
-    This function will take in a ball type and will move the ball to the
-    correct stk.
-    """
+def algorithm(stack_1: stack, stack_2: stack, stack_3: stack) -> None:
     stack_list = [stack_1, stack_2, stack_3]
     get_stack_from_type(stk.top(stack_1), stack_1, stack_2, stack_3, stack_list)
     while stk.is_empty(stack_1) is False:
@@ -52,14 +41,14 @@ def algorithm(stack_1, stack_2, stack_3, i) -> None:
 
 
 def main():
-    usr_input = input("Enter initalization text: ")
+    usr_input = input("Enter initialization text: ")
     red_stack = stk.make_empty_stack()
     green_stack = stk.make_empty_stack()
     blue_stack = stk.make_empty_stack()
     animate.animate_init(usr_input)
     for i in usr_input:
         stk.push(red_stack, i)
-    algorithm(red_stack, green_stack, blue_stack, len(usr_input))
+    algorithm(red_stack, green_stack, blue_stack)
     animate.animate_finish()
 
 
