@@ -24,7 +24,7 @@ def get_stack_from_type(
                 for _ in range(instances_of_R):
                     move(stack_3, stack_2, stack_list)
         case _:
-            return None
+            raise IndexError
 
 
 def move(starting_stack, ending_stack, stack_list) -> None:
@@ -59,7 +59,6 @@ def main():
     animate.animate_init(usr_input)
     for i in usr_input:
         stk.push(red_stack, i)
-    print(stk.is_empty(green_stack))
     algorithm(red_stack, green_stack, blue_stack, len(usr_input))
     animate.animate_finish()
 
