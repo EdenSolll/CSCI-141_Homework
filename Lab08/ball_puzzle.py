@@ -58,7 +58,7 @@ def get_stack_from_type(ball_type: str, stack_1: stack, stack_2: stack, stack_3:
                     for _ in range(instances_of_R):
                             moves += move(stack_3, stack_2, stack_list)
         case _:
-            raise IndexError
+            return 0, 0
     return moves, stop
 
 
