@@ -60,7 +60,8 @@ def get_stack_from_type( ball_type: str, stack_1: stack, stack_2: stack, stack_3
                 if stk.is_empty(stack_1) is True:
                     for _ in range(instances_of_R):
                         moves += move(stack_3, stack_1, stack_list)
-                        
+                        stop = 1
+                    return moves, stop
                 else:
                     for _ in range(instances_of_R):
                             moves += move(stack_3, stack_2, stack_list)
@@ -107,9 +108,14 @@ def algorithm(stack_1: stack, stack_2: stack, stack_3: stack) -> int:
     stack_list = [stack_1, stack_2, stack_3]
     moves += get_stack_from_type(stk.top(stack_1), stack_1, stack_2, stack_3, stack_list)
     while stk.is_empty(stack_1) is False:
-        moves += get_stack_from_type(stk.top(stack_1), stack_1, stack_2, stack_3, stack_list)
-    while stk.is_empty(stack_2) is False and stk.top(stack_2) == "R":
-        moves += move(stack_2, stack_1, stack_list)
+        stop = None
+        result = get_stack_from_type(stk.top(stack_1), stack_1, stack_2, stack_3, stack_list)
+        if isinstance(result, tuple):
+            moves, stop = result
+        else:
+            moves = result
+        if stop is not None:
+            break
     return moves
 
 
