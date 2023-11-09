@@ -1,0 +1,25 @@
+Question 1:
+
+[a ->] [b ->] -> [c rest] -> [d none]
+
+
+Question 2:
+size = 1 + size(node.next)
+1 + (1 + size(node.next))
+1 + (1 + size(node.next))
+1 + (1 + (1 + size(node.next)))
+1 + (1 + (1 + (1 + size(node.next))))
+4
+
+Question 3:
+The issue with this code is that it is trying to mutate an immutable list
+To solve the error you either have to create the link at once by doing
+front = FrozenNode(10, 20)
+or by using a mutable linked list
+
+Question 4:
+Return a list of all even nodes
+
+Question 5:
+
+#! /bin/bash
