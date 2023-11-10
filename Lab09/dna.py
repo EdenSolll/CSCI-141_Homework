@@ -26,3 +26,5 @@ def delete_seq(dna_seq, idx, segment_size):
 
 def duplicate_seq(dna_seq, idx, segment_size):
     return dna_seq if segment_size == 0 else [][0] if length_rec(dna_seq) - idx < segment_size else insert_seq(dna_seq, delete_seq(node.FrozenNode(dna_seq.value, duplicate_seq(dna_seq.next, idx-1, segment_size)), segment_size, length_rec(dna_seq) - segment_size), idx) if idx != 0 else dna_seq
+
+...
