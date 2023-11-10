@@ -19,7 +19,10 @@ def substitute(dna_seq1: node.FrozenNode | None, idx: int, base: str):
     return [][0] if dna_seq1 is None or idx < 0 else node.FrozenNode(base, dna_seq1.next) if idx == 0 else node.FrozenNode(dna_seq1.value, substitute(dna_seq1.next, idx-1, base))
 
 def insert_seq(dna_seq1, dna_seq2, idx):
-    return dna_seq2 if dna_seq1 is None and idx == 0 else node.FrozenNode(dna_seq1.value, insert_seq(dna_seq1.next, dna_seq2, 0)) if idx == 0 else node.FrozenNode(dna_seq1.value, insert_seq(dna_seq1.next, dna_seq2, idx-1)) if dna_seq1 else [][0]
+    return [][0] if length_rec(dna_seq1) < idx else node.FrozenNode(dna_seq1.value, insert_seq(dna_seq1.next, dna_seq2, idx-1)) if idx != 0 else node.FrozenNode(dna_seq2.value, insert_seq(dna_seq1, dna_seq2.next, idx)) if dna_seq2 else dna_seq1
 
 def delete_seq(dna_seq, idx, segment_size):
     return dna_seq if segment_size == 0 else [][0] if length_rec(dna_seq) - idx < segment_size else delete_seq(dna_seq.next, idx, segment_size - 1) if idx == 0 else node.FrozenNode(dna_seq.value, delete_seq(dna_seq.next, idx-1, segment_size))
+
+def duplicate_seq(dna_seq, idx, segment_size):
+    return dna_seq if segment_size == 0 else [][0] if length_rec(dna_seq) - idx < segment_size else insert_seq(dna_seq, delete_seq(node.FrozenNode(dna_seq.value, duplicate_seq(dna_seq.next, idx-1, segment_size)), segment_size, length_rec(dna_seq) - segment_size), idx) if idx != 0 else dna_seq
