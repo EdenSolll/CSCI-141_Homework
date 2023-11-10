@@ -1,4 +1,3 @@
-from immutable_extra import concatenate
 import node_types as node
 
 def convert_to_nodes(dna: str) -> None | node.FrozenNode:
@@ -20,14 +19,7 @@ def substitute(dna_seq1: node.FrozenNode | None, idx: int, base: str):
     return [][0] if dna_seq1 is None or idx < 0 else node.FrozenNode(base, dna_seq1.next) if idx == 0 else node.FrozenNode(dna_seq1.value, substitute(dna_seq1.next, idx-1, base))
 
 def insert_seq(dna_seq1, dna_seq2, idx):
-    if idx == 0:
-        return dna_seq2 if dna_seq1 is None else FrozenNode(head1.value, insert_seq(dna_seq1.next, dna_seq2))
-    elif dna_seq1:
-        return node.FrozenNode(dna_seq1.value, insert_seq(dna_seq1.next, dna_seq2, idx-1))
-    else:
-        raise IndexError
-
-# return [][0] if not dna_seq1 or not dna_seq2 and idx == 0 else dna_seq2 if idx == 0 and not dna_seq1 else (node.FrozenNode(dna_seq1.value, insert_seq(dna_seq1.next, dna_seq2, 0))) if idx == 0 else node.FrozenNode(dna_seq1.value, insert_seq(dna_seq1.next, dna_seq2, idx-1)) if idx > 0 else [][0]
+    return dna_seq2 if dna_seq1 is None and idx == 0 else node.FrozenNode(dna_seq1.value, insert_seq(dna_seq1.next, dna_seq2, 0)) if idx == 0 else node.FrozenNode(dna_seq1.value, insert_seq(dna_seq1.next, dna_seq2, idx-1)) if dna_seq1 else [][0]
 
 def delete_seq(dna_seq, idx, segment_size):
-    pass
+    return dna_seq if segment_size == 0 else [][0] if length_rec(dna_seq) - idx < segment_size else delete_seq(dna_seq.next, idx, segment_size - 1) if idx == 0 else node.FrozenNode(dna_seq.value, delete_seq(dna_seq.next, idx-1, segment_size))
