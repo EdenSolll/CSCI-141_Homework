@@ -21,9 +21,9 @@ def main():
     while True:
         try:
             file = input('Enter data file: ')
-            words = (read_word_file(file))
+            words = (readWordFile(file))
             word = input('Enter word: ')
-            print(total_occurrences(word, words))
+            print(totalOccurrences(word, words))
             break
         except FileNotFoundError:
             print('File not found, try again.')

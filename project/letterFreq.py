@@ -8,7 +8,6 @@ def letterFreq(words: dict[str, dict[int, int]]) -> str:
         for letter in word:
             letters[letter] += worduse
     plt.bar(list("abcdefghijklmnopqrstuvwxyz"), list(letters.values()), color='skyblue')
-    plt.show()
     return "".join(list(map(lambda item: item[0], (sorted(letters.items(), key=lambda item: item[1], reverse=True)))))
 
 def main():
@@ -17,6 +16,7 @@ def main():
             file = input('Enter data file: ')
             words = wd.readWordFile(file)
             print(letterFreq(words))
+            plt.show()
             break
         except FileNotFoundError:
             print('File not found, try again.')
