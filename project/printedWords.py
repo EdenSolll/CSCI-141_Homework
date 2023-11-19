@@ -1,14 +1,14 @@
 import matplotlib.pyplot as plt
 import wordData as wd
 
-def printedWords(words: dict[str, dict[int, int]]) -> list:
+def printedWords(words: dict[str, dict[int, int]]) -> list[tuple[int, int]]:
     yearData:dict[int,int] = dict()
     for i in words.values():
         for x in i:
             yearData[x] = i[x] + yearData.get(x, 0)
     return list(yearData.items())
 
-def wordsForYear(year: int, yearList: list) -> int:
+def wordsForYear(year: int, yearList: list[tuple[int, int]]) -> int:
     plt.plot(list(dict(yearList).keys()), list(dict(yearList).values()))
     return dict(yearList)[year]
 
@@ -16,8 +16,8 @@ def main():
     while True:
         try:
             file = input('Enter data file: ')
-            year = input('Enter year: ')
             words = wd.readWordFile(file)
+            year = input('Enter year: ')
             data = printedWords(words)
             print(f'Total printed words in {year}: {wordsForYear(int(year), data)}')
             plt.show()
