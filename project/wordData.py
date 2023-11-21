@@ -1,7 +1,7 @@
 def readWordFile(filename: str) -> dict[str, dict[int, int]]:
     words:dict[str,dict[int,int]] = dict()
     last_word = None
-    with open(filename, 'r') as f:
+    with open('data/' + filename, 'r') as f:
       for line in f:
         if ',' not in line:
           last_word = line.strip()
@@ -9,6 +9,7 @@ def readWordFile(filename: str) -> dict[str, dict[int, int]]:
         else:
           year, count = list(map(int, line.split(',')))
           words[str(last_word)][year] = count
+    f.close()
     return words
 
 def totalOccurrences(word: str, words: dict) -> int:
