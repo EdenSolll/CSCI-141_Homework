@@ -1,6 +1,7 @@
 def readWordFile(filename: str) -> dict[str, dict[int, int]]:
     words:dict[str,dict[int,int]] = dict()
     last_word = None
+    defaultDict:dict[int,int] = {year: 0 for year in range(1900, 2009)}
     with open('data/' + filename, 'r') as f:
       for line in f:
         if ',' not in line:
@@ -9,6 +10,8 @@ def readWordFile(filename: str) -> dict[str, dict[int, int]]:
         else:
           year, count = list(map(int, line.split(',')))
           words[str(last_word)][year] = count
+    for key, value in words.items():
+        words[key] = defaultDict | value
     f.close()
     return words
 

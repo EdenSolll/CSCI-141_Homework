@@ -1,13 +1,15 @@
 import matplotlib.pyplot as plt
 import wordData as wd
 
+ALPHBET = "abcdefghijklmnopqrstuvwxyz"
+
 def letterFreq(words: dict[str, dict[int, int]]) -> str:
-    letters = {a:0 for a in "abcdefghijklmnopqrstuvwxyz"}
+    letters = {a:0 for a in ALPHBET}
     for word in words:
         worduse = wd.totalOccurrences(word, words)
         for letter in word:
             letters[letter] += worduse
-    plt.bar(list("abcdefghijklmnopqrstuvwxyz"), list(letters.values()), color='skyblue')
+    plt.bar(list(ALPHBET), list(letters.values()), color='skyblue')
     return "".join(list(map(lambda item: item[0], (sorted(letters.items(), key=lambda item: item[1], reverse=True)))))
 
 def main():
