@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
-import wordData as wd
+
+from wordData import readWordFile
 
 def printedWords(words: dict[str, dict[int, int]]) -> list[tuple[int, int]]:
     yearData:dict[int,int] = dict()
@@ -16,7 +17,7 @@ def main():
     while True:
         try:
             file = input('Enter data file: ')
-            words = wd.readWordFile(file)
+            words = readWordFile(file)
             year = input('Enter year: ')
             data = printedWords(words)
             print(f'Total printed words in {year}: {wordsForYear(int(year), data)}')

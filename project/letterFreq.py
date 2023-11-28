@@ -1,12 +1,13 @@
 import matplotlib.pyplot as plt
-import wordData as wd
+
+from wordData import readWordFile, totalOccurrences
 
 ALPHBET = "abcdefghijklmnopqrstuvwxyz"
 
 def letterFreq(words: dict[str, dict[int, int]]) -> str:
     letters = {a:0 for a in ALPHBET}
     for word in words:
-        worduse = wd.totalOccurrences(word, words)
+        worduse = totalOccurrences(word, words)
         for letter in word:
             letters[letter] += worduse
     plt.bar(list(ALPHBET), list(letters.values()), color='skyblue')
@@ -16,7 +17,7 @@ def main():
     while True:
         try:
             file = input('Enter data file: ')
-            words = wd.readWordFile(file)
+            words = readWordFile(file)
             print(letterFreq(words))
             plt.show()
             break
