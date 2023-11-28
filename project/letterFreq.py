@@ -11,7 +11,7 @@ Author: Eden Grace
 """
 
 
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt # type: ignore
 import wordData as wd
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz"
@@ -44,7 +44,7 @@ def letterFreq(words: dict[str, dict[int, int]]) -> str:
     )
 
 
-def main():
+def main() -> None:
     """
     This main function prompts the user to enter a data file, reads the words from the file,
     calculates the letter frequency of the words, and displays the frequency distribution plot.

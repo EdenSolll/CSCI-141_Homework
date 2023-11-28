@@ -2,7 +2,7 @@
 File: wordSimilarity.py
 Description:
     This program takes in a file of words and their usage each year and a word. It then calculates the cosine similarity of the given word to every word in the file.
-    The top 5 most similar words are then returned. 
+    The top 5 most similar words are then returned.
 
 Language: python3
 Course: CSCI-141
@@ -11,7 +11,7 @@ Author: Eden Grace
 """
 
 import wordData as wd
-import numpy as np
+import numpy as np # type: ignore
 
 RETURN_SIZE = 5
 
@@ -45,7 +45,7 @@ def topSimilar(words: dict[str, dict[int, int]], word: str) -> list[str]:
     return list(sortedVec.keys())[:RETURN_SIZE]
 
 
-def main():
+def main() -> None:
     """
     This main function prompts the user for a file and a word. The file is read using the readWordFile function from wordData.py, and the word and the data from the file
     are passed to the topSimilar function. The topSimilar function calculates the similarity of each word in the file to the given word and returns the 5 most similar words.

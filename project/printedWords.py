@@ -2,7 +2,7 @@
 File: printedWords.py
 Description:
     This program uses wordData.py to read a file and store the data in a dictionary of words with a value of a dictionary representing the use of the word by year as a dictionary.
-    Then the program asks the user for a year and prints out the total count of printed words for that year. 
+    Then the program asks the user for a year and prints out the total count of printed words for that year.
     The program also displays a plot of the total count of printed words for each year.
 
 Language: python3
@@ -12,7 +12,7 @@ Author: Eden Grace
 """
 
 
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt # type: ignore
 
 import wordData as wd
 
@@ -49,7 +49,7 @@ def wordsForYear(year: int, yearList: list[tuple[int, int]]) -> int:
     return dict(yearList)[year]
 
 
-def main():
+def main() -> None:
     """
     This main function prompts the user to enter a data file and a year. It reads the words from the file,
     calculates the total printed words for the given year, and displays the result. It also shows a plot

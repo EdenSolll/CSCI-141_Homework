@@ -2,9 +2,9 @@
 File: trending.py
 Description:
     This program uses wordData.py to read a file and store the data in a dictionary of words with a value of a dictionary representing the use of the word by year as a dictionary.
-    Then the program asks the user for a starting year and an ending year and prints out the top 10 trending words and the bottom 10 trending words between those years. 
-    Trending words are words that have a usage of at least 1000 in both the starting year and the ending year. The trending words are sorted by the ratio of the ending year 
-    usage to the starting year usage. 
+    Then the program asks the user for a starting year and an ending year and prints out the top 10 trending words and the bottom 10 trending words between those years.
+    Trending words are words that have a usage of at least 1000 in both the starting year and the ending year. The trending words are sorted by the ratio of the ending year
+    usage to the starting year usage.
 
 Language: python3
 Class: CSCI 141
@@ -40,7 +40,7 @@ def trending(
     return sorted(trends.items(), key=lambda item: item[1], reverse=True)
 
 
-def main():
+def main() -> None:
     """
     This main function prompts the user to enter a data file, starting year, and ending year.
     It reads the word file, calculates the trending words within the specified year range,
