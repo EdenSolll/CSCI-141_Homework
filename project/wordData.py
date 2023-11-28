@@ -25,10 +25,10 @@ def readWordFile(filename: str) -> dict[str, dict[int, int]]:
     Returns:
         words dict[str, dict[int, int]]: returns a dictionary of words with a value of a dictionary relating the use of the word as years to the data of those years.
     """
-
     words:dict[str,dict[int,int]] = dict()
     last_word = None
     defaultDict:dict[int,int] = {year: 0 for year in range(MIN_YEAR, MAX_YEAR + 1)}
+
     with open('data/' + filename, 'r') as f:
       for line in f:
         if ',' not in line:
@@ -39,7 +39,8 @@ def readWordFile(filename: str) -> dict[str, dict[int, int]]:
         else:
           year, count = list(map(int, line.split(',')))
           words[str(last_word)][year] = count
-
+    if last_word:
+        words[last_word] = defaultDict | words[last_word]
     f.close()
     return words
 
