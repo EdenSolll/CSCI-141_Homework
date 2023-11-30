@@ -13,34 +13,26 @@ Author: Aaron Deever atd@cs.rit.edu
 Author: Eduardo Lima (lima@cs.rit.edu)
 """
 
-import letterFreq   # letterFreq
-import wordData     # readFile, totalOccurrences
+import letterFreq  # letterFreq
+import wordData  # readFile, totalOccurrences
+
 
 def testA():
-    WORD_OCCURRENCES = {'airplane' : 2487028,
-                        'alien' : 5400198,
-                        'accept' : 26299474}
+    WORD_OCCURRENCES = {"airplane": 2487028, "alien": 5400198, "accept": 26299474}
 
-    LETTER_FREQ_STRING = 'andetsrliocupgmybhvfwkxqjz'
-    
+    LETTER_FREQ_STRING = "andetsrliocupgmybhvfwkxqjz"
 
-    print('Testing with a.txt...\n')
-    words = wordData.readWordFile('a.txt')
+    words = wordData.readWordFile("a.txt")
 
     # test totalOccurrences
+
     for word in WORD_OCCURRENCES:
-        print('Total occurrences of', word + ':',
-              'OK' if wordData.totalOccurrences(word, words) == WORD_OCCURRENCES[word] \
-                else 'GOT: ' + str(wordData.totalOccurrences(word, words)) +
-                     ', EXPECTED: ' + str(WORD_OCCURRENCES[word]))
+        assert wordData.totalOccurrences(word, words) == WORD_OCCURRENCES[word]
 
-    freqString = letterFreq.letterFreq(words)
-    if freqString == LETTER_FREQ_STRING:
-        print('\nFrequency ordering of letters OK')
-    else:
-        print('Frequency ordering of letters incorrect.') 
-        print('GOT: ' + freqString)
-        print('EXPECTED: ' + LETTER_FREQ_STRING)
+    # test letterFreq
 
-if __name__ == '__main__':
+    assert letterFreq.letterFreq(words) == LETTER_FREQ_STRING
+
+
+if __name__ == "__main__":
     testA()

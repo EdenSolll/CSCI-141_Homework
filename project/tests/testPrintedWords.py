@@ -11,35 +11,32 @@ Author: Aaron Deever atd@cs.rit.edu
 Author: Eduardo Lima (lima@cs.rit.edu)
 """
 
-__author__ = 'sps'
+__author__ = "sps"
 
-import wordData     # readWordFile
-import printedWords     # printedWords, wordsForYear
+import wordData  # readWordFile
+import printedWords  # printedWords, wordsForYear
+
 
 def testZ():
     """
     Test function for 'z.txt'.
     :return: None
-    :rtype: NoneType
+    :return type: None
     """
 
     # Expected results from z.txt
-    WORDS = ((1900,136049), (1931,155940), (1964,581610), (2008,2450556))
+    WORDS = ((1900, 136049), (1931, 155940), (1964, 581610), (2008, 2450556))
 
     # read in the words
-    print('Testing with z.txt...')
-    words = wordData.readWordFile('z.txt')
+    words = wordData.readWordFile("z.txt")
 
     # get the list of words for each year
     wordsByYearList = printedWords.printedWords(words)
 
     for idx in range(len(WORDS)):
-        print("Testing year", WORDS[idx][0])
         got = printedWords.wordsForYear(WORDS[idx][0], wordsByYearList)
-        if(got == WORDS[idx][1]):
-            print("OK")
-        else:
-            print("GOT:",got,"EXPECTED:",WORDS[idx][1])
-            
-if __name__ == '__main__':
+        assert got == WORDS[idx][1]
+
+
+if __name__ == "__main__":
     testZ()
