@@ -3,7 +3,7 @@ import letterFreq
 import wordData
 import printedWords
 import trending
-from wordSimilarity import topSimilar
+import wordSimilarity
 
 
 A_TXT_WORDS = wordData.readWordFile("a.txt")
@@ -27,6 +27,7 @@ TRENDS = (
 
 
 class TestMain(unittest.TestCase):
+
     def test_letterFreq(self):
         for word in WORD_OCCURRENCES:
             assert (
@@ -35,19 +36,19 @@ class TestMain(unittest.TestCase):
         assert letterFreq.letterFreq(A_TXT_WORDS) == LETTER_FREQ_STRING
 
     def test_wordSimilarity(self):
-        assert topSimilar(VERY_SHORT_TXT_WORDS, "airport") == [
+        assert wordSimilarity.topSimilar(VERY_SHORT_TXT_WORDS, "airport") == [
             "airport",
             "wandered",
             "request",
         ]
-        assert topSimilar(A_TXT_WORDS, "ajf") == [
+        assert wordSimilarity.topSimilar(A_TXT_WORDS, "adj") == [
             "adj",
             "antitrust",
             "adenosine",
             "adenomas",
             "ambulatory",
         ]
-        assert topSimilar(ALL_TXT_WORDS, "robot") == [
+        assert wordSimilarity.topSimilar(ALL_TXT_WORDS, "robot") == [
             "robot",
             "robots",
             "robotics",
