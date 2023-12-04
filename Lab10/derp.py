@@ -33,17 +33,15 @@ def parse(tokens):
         return derp.MathNode(parse(tokens), temp, parse(tokens))
 
 
-def infix(node):
+def infix(node: str):
     """infix: Node -> String
     Perform an inorder traversal of the node and return a string that
     represents the infix expression.
     precondition: node is a valid derp tree node
     """
     equation = ""
-
     if not node:
-        pass
-
+        return
     elif node.left and node.right:
         infix(node.left)
     elif not node.left:
