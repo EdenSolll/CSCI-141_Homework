@@ -54,32 +54,31 @@ def infix(node: derp.LiteralNode | derp.VariableNode | derp.MathNode) -> str:
     return equation
 
 
-def evaluate(
-    node: derp.LiteralNode | derp.VariableNode | derp.MathNode, sym_tbl
-) -> float:
+def evaluate(node: derp.LiteralNode | derp.VariableNode | derp.MathNode) -> int:
     """
     evaluate: Node * dict(key=String, value=int) -> int
     Return the result of evaluating the expression represented by node.
-    Precondition: all variable names must exist in sym_tbl
     precondition: node is a valid derp tree node
     """
-    result: float = 0
+    result: int = 0
     equation = infix(node).strip(" ()").split()
+    if len(equation) == 1 and equation[0].isnumeric():
+        return int(equation[0])
     for i, char in enumerate(equation):
         if char in OPERATORS:
             match char:
                 case "+":
-                    result += float(equation[i - 1]) + float(equation[i + 1])
+                    result += int(equation[i - 1]) + int(equation[i + 1])
                 case "-":
-                    result += float(equation[i - 1]) - float(equation[i + 1])
+                    result += int(equation[i - 1]) - int(equation[i + 1])
                 case "*":
-                    result += float(equation[i - 1]) * float(equation[i + 1])
+                    result += int(equation[i - 1]) * int(equation[i + 1])
                 case "/":
-                    result += float(equation[i - 1]) / float(equation[i + 1])
+                    result += int(equation[i - 1]) / int(equation[i + 1])
                 case "//":
-                    result += float(equation[i - 1]) // float(equation[i + 1])
+                    result += int(equation[i - 1]) // int(equation[i + 1])
                 case "**":
-                    result += float(equation[i - 1]) ** float(equation[i + 1])
+                    result += int(equation[i - 1]) ** int(equation[i + 1])
     return result
 
 
@@ -97,6 +96,9 @@ def main() -> None:
     # Student: Construct and display the symbol table here
 
     file = open(in_file, "r")
+    for line in file:
+        print(line)
+
     print("Herp, enter prefix expressions, e.g.: + 10 20 (ENTER to quit)...")
 
     # input loop prompts for prefix expressions and produces infix version
@@ -122,7 +124,7 @@ def main() -> None:
 
         # Student: Evaluate the parse tree by calling evaluate and saving the integer result.
 
-        result = evaluate(tr, file)
+        result = evaluate(tr)
 
         # Student: Modify the print statement to include the result.
 
