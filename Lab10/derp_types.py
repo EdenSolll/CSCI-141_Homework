@@ -17,19 +17,17 @@ from typing import Union
 
 @dataclass(frozen=True)
 class LiteralNode:
-    """Represents an operand node
-    """
+    """Represents an operand node"""
 
     val: int
 
 
 @dataclass(frozen=True)
 class VariableNode:
-    """Represents a variable node
-    """
+    """Represents a variable node"""
 
     name: str
-    
+
 
 @dataclass(frozen=True)
 class MathNode:
@@ -39,7 +37,6 @@ class MathNode:
     right: reference to a LiteralNode, a VariableNode, or another MathNode
     """
 
-    left: Union['MathNode', LiteralNode, VariableNode]
+    left: Union["MathNode", LiteralNode, VariableNode]
     operator: str
-    right: Union['MathNode', LiteralNode, VariableNode]
-
+    right: Union["MathNode", LiteralNode, VariableNode]

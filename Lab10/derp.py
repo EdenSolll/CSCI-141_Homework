@@ -10,54 +10,77 @@ print the result.
 
 Author: CS@RIT.EDU
 
-Author: PUT YOUR FULL NAME HERE
+Author: Eden Grace
 """
 
 import derp_types as derp
 
+OPERATORS = ["+", "-", "*", "/", "%", "//", "**"]
 
-def parse(tokens):
+
+def parse(
+    tokens: list[str],
+) -> derp.LiteralNode | derp.VariableNode | derp.MathNode:
     """parse: list(String) -> Node
     From a prefix stream of tokens, construct and return the tree,
     as a collection of Nodes, that represent the expression.
     precondition: tokens is a non-empty list of strings
     """
     if not tokens:
-        pass
+        raise ValueError("Empty token list")
     elif tokens[0].isidentifier():
         return derp.VariableNode(tokens.pop(0))
     elif tokens[0].isdigit():
-        return derp.LiteralNode(tokens.pop(0))
+        return derp.LiteralNode(int(tokens.pop(0)))
     else:
         temp = tokens.pop(0)
         return derp.MathNode(parse(tokens), temp, parse(tokens))
 
 
-def infix(node: str):
+def infix(node: derp.LiteralNode | derp.VariableNode | derp.MathNode) -> str:
     """infix: Node -> String
-    Perform an inorder traversal of the node and return a string that
+    Perform an in order traversal of the node and return a string that
     represents the infix expression.
     precondition: node is a valid derp tree node
     """
-    equation = ""
-    if not node:
-        return
-    elif node.left and node.right:
-        infix(node.left)
-    elif not node.left:
-        infix(node.right)
-    else:
+    equation: str = ""
+    if node:
+        if isinstance(node, derp.VariableNode):
+            equation += str(node.name)
+        elif isinstance(node, derp.LiteralNode):
+            equation += str(node.val)
+        elif isinstance(node, derp.MathNode):
+            equation += f"({infix(node.left)} {node.operator} {infix(node.right)})"
+    return equation
 
 
-def evaluate(node, sym_tbl):
+def evaluate(
+    node: derp.LiteralNode | derp.VariableNode | derp.MathNode, sym_tbl
+) -> float:
     """
     evaluate: Node * dict(key=String, value=int) -> int
     Return the result of evaluating the expression represented by node.
     Precondition: all variable names must exist in sym_tbl
     precondition: node is a valid derp tree node
     """
-
-    pass
+    result: float = 0
+    equation = infix(node).strip(" ()").split()
+    for i, char in enumerate(equation):
+        if char in OPERATORS:
+            match char:
+                case "+":
+                    result += float(equation[i - 1]) + float(equation[i + 1])
+                case "-":
+                    result += float(equation[i - 1]) - float(equation[i + 1])
+                case "*":
+                    result += float(equation[i - 1]) * float(equation[i + 1])
+                case "/":
+                    result += float(equation[i - 1]) / float(equation[i + 1])
+                case "//":
+                    result += float(equation[i - 1]) // float(equation[i + 1])
+                case "**":
+                    result += float(equation[i - 1]) ** float(equation[i + 1])
+    return result
 
 
 def main() -> None:
@@ -70,22 +93,43 @@ def main() -> None:
 
     print("Hello Herp, welcome to Derp v1.0 :)")
     in_file = input("Herp, enter symbol table file: ")
-    file = open(in_file, 'r')
+
+    # Student: Construct and display the symbol table here
+
+    file = open(in_file, "r")
     print("Herp, enter prefix expressions, e.g.: + 10 20 (ENTER to quit)...")
+
+    # input loop prompts for prefix expressions and produces infix version
+    # along with its evaluation
+
     while True:
         prefix_exp = input("derp> ")
         if prefix_exp == "":
             break
         else:
+            # Student: Generate the list of tokens from the prefix expression.
+
             prefix_list = prefix_exp.split()
-        root = prefix_list[0]
+
+        # Student: Call parse() with the list of tokens and save the root of the parse tree.
+
         tr = parse(prefix_list)
+
+        # Student: Generate the infix expression by calling infix and saving the string.
+
         infix_str = infix(tr)
         print(f"Derping the infix expression: {infix_str}")
-        for line in file:
-            result = evaluate(tr, line)
+
+        # Student: Evaluate the parse tree by calling evaluate and saving the integer result.
+
+        result = evaluate(tr, file)
+
+        # Student: Modify the print statement to include the result.
+
         print(f"Derping the evaluation: {result}")
+
     print("Goodbye Herp :(")
+
 
 if __name__ == "__main__":
     main()
